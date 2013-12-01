@@ -1,0 +1,101 @@
+---
+build.dart --machine --full
+
+build.dart finished [1085 ms]
+
+---
+build.dart --machine --removed=web/clickcounter.html --removed=web/simulation_app.css
+[{"method":"error","params":{"file":"web/simulation_app.html","message":"couldn't find imported asset \"web/clickcounter.html\" in package \"Simulation_app\".","line":10,"charStart":191,"charEnd":235}}]
+[{"method":"warning","params":{"file":"web/simulation_app.html","message":"definition for Polymer element with tag name \"click-counter\" not found.","line":20,"charStart":502,"charEnd":527}}]
+build.dart finished [794 ms]
+
+---
+build.dart --machine --removed=web/clickcounter.dart --removed=web/simulation_app.html
+
+build.dart finished [713 ms]
+
+---
+build.dart --machine --changed=pubspec.lock
+
+build.dart finished [699 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [716 ms]
+
+---
+build.dart --machine --full
+
+build.dart finished [748 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [702 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [779 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [746 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [806 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [702 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [700 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [738 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [733 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [764 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [729 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [757 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [742 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [694 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [705 ms]
+
