@@ -254,3 +254,98 @@ build.dart --machine --changed=lib\classes.dart
 
 build.dart finished [3059 ms]
 
+---
+build.dart --machine --changed=lib\classes.dart
+
+build.dart finished [2661 ms]
+
+---
+build.dart --machine --changed=lib\classes.dart
+
+build.dart finished [2549 ms]
+
+---
+build.dart --machine --changed=lib\classes.dart
+
+build.dart finished [3042 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [2873 ms]
+
+---
+build.dart --machine --changed=lib\classes.dart --changed=web\simulation.dart
+
+build.dart finished [4531 ms]
+
+---
+build.dart --machine --removed=lib\classes.dart
+
+build.dart finished [6705 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [2829 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [2908 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [5052 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [6599 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [2619 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [4869 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [6183 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [2983 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [6546 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [4767 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [4914 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [6370 ms]
+
+---
+build.dart --machine --changed=web\simulation.dart
+
+build.dart finished [4957 ms]
+
