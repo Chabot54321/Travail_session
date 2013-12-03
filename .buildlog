@@ -99,3 +99,48 @@ build.dart --machine --changed=lib/classes.dart
 
 build.dart finished [705 ms]
 
+---
+build.dart --machine --full
+
+build.dart finished [1840 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [722 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [725 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [726 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [729 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [760 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [777 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [737 ms]
+
+---
+build.dart --machine --changed=lib/classes.dart
+
+build.dart finished [750 ms]
+
