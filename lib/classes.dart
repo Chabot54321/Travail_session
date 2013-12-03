@@ -45,8 +45,8 @@ class SimulationDatas {
   double TauxServeur2PremierPassage;
   double TauxRetravail;
   double TauxArrivee;
-  int LB_TransportRetravail;
-  int UB_TransportRetravail;
+  double LB_TransportRetravail;
+  double UB_TransportRetravail;
   double ProbSortie;
   double ProbDestruction;
   double ProbRetravail;
@@ -74,9 +74,9 @@ main() {
     
     Params.TauxRetravail = 12.00;
     
-    Params.LB_TransportRetravail = 3;
+    Params.LB_TransportRetravail = 3.00;
     
-    Params.UB_TransportRetravail = 7;
+    Params.UB_TransportRetravail = 7.00;
    
     Params.ProbSortie = 0.75;
     
@@ -114,8 +114,8 @@ main() {
       Sys.serveur1 = MonServeur1;
       
       var MonServeur2 = new serveur();
-      MonServeur1.No = 2;
-      MonServeur1.PieceEnTraitement = null;
+      MonServeur2.No = 2;
+      MonServeur2.PieceEnTraitement = null;
       Sys.serveur2 = MonServeur2;
       
       //Il faut aussi initialiser une horloge qui nous aide à gérer les événements
@@ -172,20 +172,33 @@ main() {
 
        // Phase B
        // PHASE B: Changer l'état du système et créer, au besoin, les événements BOUND liés
-        piece pieceEnCours = null     ;
+        var pieceEnCours = new piece();
+        
         if (EvenementEnCours.Libelle_Evenement == "AP"){
           var p = new piece();
           p.HeureArrivee = Horloge;
           Sys.file.add(p);
           
           var eve = new Evenement();
-          eve.Temps = Horloge + 15;                                                                                 //loi exponentiel au lier de 15
+          eve.Temps = Horloge + 15.00;                                                                                 //loi exponentiel au lier de 15
           eve.Libelle_Evenement = "AP";
           Sys.ListEvenements.add(eve);
           
+          
+         //FSP
+          
         }else if (EvenementEnCours.Libelle_Evenement == "FSP"){
-                                                    
-          }
+                     
+          piece pieceEnCours = null;
+          if (EvenementEnCours.ServeurNo == 1){
+            pieceEnCours = Sys.serveur1.PieceEnTraitement;
+            Sys.serveur1.PieceEnTraitement = null;
+             }else if (EvenementEnCours.ServeurNo == 2){
+               pieceEnCours = Sys.serveur2.PieceEnTraitement;
+               Sys.serveur2.PieceEnTraitement = null;
+             }
+                  
+          
         
         if (EvenementEnCours.ServeurNo == 1){ 
           pieceEnCours = Sys.serveur1.PieceEnTraitement;
@@ -195,27 +208,30 @@ main() {
           pieceEnCours = Sys.serveur2.PieceEnTraitement = null;
                 }
         
-        
+        ////
+        ////
+        ////
         var prob =  0.60;
           if (Params.ProbSortie >= prob ){
             pieceEnCours.HeureSortie = Horloge;
             pieceEnCours.FinTraitement = Horloge;
             
-            pieceEnCours.NbTraitements +=1;
+            pieceEnCours.NbTraitements ++ ;
             
             Sys.EntitesTraitees.add(pieceEnCours);
             
-          }else if (Params.ProbSortie + Params.ProbDestruction >= prob){
+          }else if ((Params.ProbSortie + Params.ProbDestruction) >= prob){
             pieceEnCours.HeureSortie = Horloge;
             pieceEnCours.FinTraitement = Horloge;
-            pieceEnCours.NbTraitements += 1;
+            pieceEnCours.NbTraitements ++ ;
             Sys.EntitesDetruites.add(pieceEnCours);
+            
           }else if (Params.ProbDestruction + Params.ProbRetravail + Params.ProbSortie){
             pieceEnCours.FinTraitement = Horloge;
-            pieceEnCours.NbTraitements += 1;
+            pieceEnCours.NbTraitements ++ ;
             
             var eve = new Evenement();
-            eve.Temps = Horloge + 3;                                                                                    //changer 3 pour loi uniforme
+            eve.Temps = Horloge + 3.00;                                                                                    //changer 3 pour loi uniforme
             eve.Libelle_Evenement = "RTP";
             eve.ServeurNo = 0;
             eve.PieceTransport = pieceEnCours;
@@ -231,7 +247,7 @@ main() {
               Sys.file.add(pieceEnCours);
             }
           
-
+        }
        //   FIN PHASE B
 
           
@@ -240,7 +256,7 @@ main() {
          if (Termine != true ) {
            //Quelles sont les conditions qui font en sorte qu'un événement doit se déclencher ?
            //1) Serveur 1 libre et au moins une pièce en file - Déclencher un début de service sur le serveur 1
-           if(Sys.serveur1.PieceEnTraitement = null & Sys.file.length> 0){                                            //A valider
+           if(Sys.serveur1.PieceEnTraitement == null && Sys.file.length> 0){                                            //A valider
          //If Sys.Serveur1.PieceEnTraitement Is Nothing And Sys.file.Count > 0 Then  
              
             piece PieceEnCours = Sys.file.first;
@@ -253,22 +269,22 @@ main() {
             eve.Libelle_Evenement = "FSP";
             eve.ServeurNo = 1;
             
-            if (PieceEnCours.NbTraitements> 1){
-              var tempsTraitement = 15;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+            if (PieceEnCours.NbTraitements > 1){
+              var tempsTraitement = 15.00;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
               Sys.serveur1.SommeTempsOccupe += tempsTraitement;
             
             }else{
-              var tempsTraitement = 15;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+              var tempsTraitement = 15.00;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
-              Sys.serveur1.SommeTempsOccupe += tempsTraitement;
+              Sys.serveur1.SommeTempsOccupe = Sys.serveur1.SommeTempsOccupe + tempsTraitement;
                           
             }
             Sys.ListEvenements.add(eve);
            }
            
       // 2) Serveur 2 libre et au moins une pièce en file - Déclencher un début de service sur le serveur 2 
-           if(Sys.serveur2.PieceEnTraitement == null & Sys.file.length> 0){
+           if(Sys.serveur2.PieceEnTraitement == null && Sys.file.length> 0){
              piece PieceEnCours = Sys.file.first;
              Sys.serveur2.PieceEnTraitement = PieceEnCours;
              PieceEnCours.DebutTraitement = Horloge;
@@ -298,16 +314,20 @@ main() {
         
         } while (Termine = true); //fin du DO
         
-      Params.Resultats.add(Sys);
-       
-   continue; //  Next REP;                                                                               //Il faut recommencer la boucle des REP;
+      Params.Resultats.add(Sys);                                                                              //Il faut recommencer la boucle des REP;
 
 
-      
-      
     }
     
-
-    
-    
 }
+
+double generateExponential (double taux, Random generator) { 
+  double valeur = (-1/taux) * log(generator.nextDouble()); 
+  return valeur; 
+  }
+
+double generateUniform (double LB,double UB, Random generator){ 
+  double valeur; if (LB < UB) { 
+    valeur = ((UB - LB) * generator.nextDouble()) + LB;
+    } 
+  return valeur; }
