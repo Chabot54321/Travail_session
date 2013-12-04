@@ -60,17 +60,17 @@ main() {
     
   Params.Resultats = new List<system>();    //Pas sur de la traduction
   
-    Params.CombienReplications = 50;
+    Params.CombienReplications = 2;
     
-    Params.CombienEntites = 250 ;
+    Params.CombienEntites = 5;
     
     Params.TauxArrivee = 4.00;
     
-    Params.TauxServeur1PremierPassage = 12.00;
+    Params.TauxServeur1PremierPassage = 5.00;
     
-    Params.TauxServeur2PremierPassage = 12.00;
+    Params.TauxServeur2PremierPassage = 5.00;
     
-    Params.TauxRetravail = 12.00;
+    Params.TauxRetravail = 5.00;
     
     Params.LB_TransportRetravail = 3.00;
     
@@ -78,7 +78,7 @@ main() {
    
     Params.ProbSortie = 0.75;
     
-    Params.ProbDestruction = 0.08;
+    Params.ProbDestruction = 0.05;
     
     Params.ProbRetravail = 0.2;
     
@@ -180,6 +180,7 @@ main() {
           p.HeureArrivee = Horloge;
           Sys.file.add(p);
           
+          //Générer l'arrivée de la pièce suivante
           var eve = new Evenement();
           eve.Temps = Horloge + generateExponential(Params.TauxArrivee, GenerateurVariablesAleatoires);                                                                                 //loi exponentiel au lier de 15
           eve.Libelle_Evenement = "AP";
@@ -200,8 +201,13 @@ main() {
              }       
         ////
         ////
-        ////
-        var prob =  0.60;
+        ////A modifier
+//          'Calculer le chemin pris par la pièce:
+//          '72,5% des cas = sortie
+//          '20% des cas = retravail
+//          '7,5% des cas = destruction
+         double prob = GenerateurVariablesAleatoires.nextDouble();
+         
           if (Params.ProbSortie >= prob ){
             pieceEnCours.HeureSortie = Horloge;
             pieceEnCours.FinTraitement = Horloge;
@@ -247,25 +253,25 @@ main() {
            //Quelles sont les conditions qui font en sorte qu'un événement doit se déclencher ?
            //1) Serveur 1 libre et au moins une pièce en file - Déclencher un début de service sur le serveur 1
            if(Sys.serveur1.PieceEnTraitement == null && Sys.file.length> 0){                                            //A valider
-         //If Sys.Serveur1.PieceEnTraitement Is Nothing And Sys.file.Count > 0 Then  
+        
              
             piece PieceEnCours = Sys.file.first;
             Sys.file.remove(PieceEnCours);
             Sys.serveur1.PieceEnTraitement = PieceEnCours;
             PieceEnCours.DebutTraitement = Horloge;
             PieceEnCours.ServeurTraitmement = 1;
-            
+            //Créer l'évènement Fin de Service Pièce "FSP" sur le serveur No 1 
             var eve = new Evenement();
             eve.Libelle_Evenement = "FSP";
             eve.ServeurNo = 1;
-            
+            //Si la pièce a déjà été traitée (NbTraitements > 1) alors il s'agit d'un évnèment retravail
             if (PieceEnCours.NbTraitements > 1){
-              var tempsTraitement = 15.00;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+              var tempsTraitement = generateExponential(Params.TauxRetravail, GenerateurVariablesAleatoires);                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
               Sys.serveur1.SommeTempsOccupe += tempsTraitement;
             
             }else{
-              var tempsTraitement = 15.00;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+              var tempsTraitement = generateExponential(Params.TauxServeur1PremierPassage, GenerateurVariablesAleatoires);                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
               Sys.serveur1.SommeTempsOccupe = Sys.serveur1.SommeTempsOccupe + tempsTraitement;
                           
@@ -312,7 +318,7 @@ main() {
 }
 
 double generateExponential (double taux, Random generator) { 
-  double valeur = (-1/taux) * log(generator.nextDouble()); 
+  double valeur = (-1/taux) * log(generator.nextDouble()) * 60; 
   return valeur; 
   }
 
