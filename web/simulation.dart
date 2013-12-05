@@ -60,9 +60,9 @@ main() {
     
   Params.Resultats = new List<system>();    //Pas sur de la traduction
   
-    Params.CombienReplications = 2;
+    Params.CombienReplications = 50;
     
-    Params.CombienEntites = 5;
+    Params.CombienEntites = 100;
     
     Params.TauxArrivee = 4.00;
     
@@ -93,9 +93,7 @@ main() {
     var start = DateTime; //Dim start As DateTime = Now
     
     
-    for (var REP = 1; REP < Params.CombienReplications; REP++) {
-     
-      
+    for (var REP = 1; REP < Params.CombienReplications+1; REP++) {     
       // La simulation se trouve dans cette boucle
       
       //À chaque réplication, il faut instancier un nouveau système (dans son état initial) avec des files vides et 2 serveurs neufs
@@ -320,67 +318,71 @@ main() {
       //ajouter l'objet sys contenant les listes d'entités traitées à l'objet params qui mémorise les paramètres et les résultats pour l'ensemble des réplications  
       Params.Resultats.add(Sys);
       
-      //Calcul des statistiques de simulation (N réplication)
-      
-      //calculer les stats pour chaque réplication selon ce qui est demandé
-      //alors nous bouclons pour chaque réplication
-
-      double HeureDeFinMoyennes = 0.00;
-      double CombienSortiesMoyennes = 0.00;
-      double CombienDetruitesMoyennes = 0.00;
-      double CombienPlusieursTraitementsMoyennes = 0.00;
-      double TauxOccS1Moyen = 0.00;
-      double TauxOccS2Moyen = 0.00;
-
-      for (int i = 1; i< Params.CombienReplications; i++){
-        
-        //Quelle heure est-il à la fin de la 200e unité traitée
-        double heureFin = Params.Resultats.elementAt(i-1).HeureDeFin;
-        HeureDeFinMoyennes += heureFin;
-        //Combien d'entités sont sorties (sans destruction mais retravail inclus) 
-        double CombienSorties = Params.Resultats.elementAt(i-1).EntitesTraitees.length;
-        CombienSortiesMoyennes += CombienSorties;
-        //combien d'entités sont détruites
-        double CombienDetruites = Params.Resultats.elementAt(i-1).EntitesDetruites.length;
-        CombienDetruitesMoyennes += CombienDetruites;
-        //Combien d'entités sont traitées plus d'une fois (retravaillée) parmi les entités traitées et les entités détruites 
-        double CombienPlusieursTraitements=0.00;
-        
-        for (piece p in Params.Resultats.elementAt(i-1).EntitesTraitees){
-          if (p.NbTraitements>1){
-            CombienPlusieursTraitements ++;
-          }
-          
-        }
-        
-        for (piece p in Params.Resultats.elementAt(i-1).EntitesDetruites){
-          if (p.NbTraitements>1){
-            CombienPlusieursTraitements ++;
-          }
-          
-        }
-        
-      // Combien de temps (proportion) le serveur 1 est-il occupé ?
-        double proportionServeur1Occupe = Params.Resultats.elementAt(i-1).serveur1.SommeTempsOccupe / heureFin;
-        TauxOccS1Moyen += proportionServeur1Occupe;
-        
-      //Combien de temps (proportion) le serveur 2 est-il occupé ?
-        double proportionServeur2Occupe = Params.Resultats.elementAt(i-1).serveur2.SommeTempsOccupe / heureFin;
-        TauxOccS2Moyen += proportionServeur2Occupe;
-      }
-            
-          HeureDeFinMoyennes = HeureDeFinMoyennes / Params.CombienReplications;
-          CombienSortiesMoyennes /= Params.CombienReplications;
-          CombienDetruitesMoyennes /= Params.CombienReplications;
-          CombienPlusieursTraitementsMoyennes /= Params.CombienReplications;
-          TauxOccS1Moyen /= Params.CombienReplications;
-          TauxOccS2Moyen /= Params.CombienReplications;
-          
-          print('$HeureDeFinMoyennes');
-      
-      
 
     }
+    
+    //Calcul des statistiques de simulation (N réplication)
+    
+    //calculer les stats pour chaque réplication selon ce qui est demandé
+    //alors nous bouclons pour chaque réplication
+
+    double HeureDeFinMoyennes = 0.00;
+    double CombienSortiesMoyennes = 0.00;
+    double CombienDetruitesMoyennes = 0.00;
+    double CombienPlusieursTraitementsMoyennes = 0.00;
+    double TauxOccS1Moyen = 0.00;
+    double TauxOccS2Moyen = 0.00;
+
+    for (int i = 1; i< Params.CombienReplications+1; i++){
+      
+      //Quelle heure est-il à la fin de la 200e unité traitée
+      double heureFin = Params.Resultats.elementAt(i-1).HeureDeFin;
+      HeureDeFinMoyennes += heureFin;
+      //Combien d'entités sont sorties (sans destruction mais retravail inclus) 
+      int CombienSorties = Params.Resultats.elementAt(i-1).EntitesTraitees.length;
+      CombienSortiesMoyennes += CombienSorties;
+      //combien d'entités sont détruites
+      int CombienDetruites = Params.Resultats.elementAt(i-1).EntitesDetruites.length;
+      CombienDetruitesMoyennes += CombienDetruites;
+      //Combien d'entités sont traitées plus d'une fois (retravaillée) parmi les entités traitées et les entités détruites 
+      int CombienPlusieursTraitements=0;
+      
+      for (piece p in Params.Resultats.elementAt(i-1).EntitesTraitees){
+        if (p.NbTraitements>1){
+          CombienPlusieursTraitements ++;
+        }
+        
+      }
+      
+      for (piece p in Params.Resultats.elementAt(i-1).EntitesDetruites){
+        if (p.NbTraitements>1){
+          CombienPlusieursTraitements ++;
+        }
+        
+      }
+      
+    // Combien de temps (proportion) le serveur 1 est-il occupé ?
+      double proportionServeur1Occupe = Params.Resultats.elementAt(i-1).serveur1.SommeTempsOccupe / heureFin;
+      TauxOccS1Moyen += proportionServeur1Occupe;
+      
+    //Combien de temps (proportion) le serveur 2 est-il occupé ?
+      double proportionServeur2Occupe = Params.Resultats.elementAt(i-1).serveur2.SommeTempsOccupe / heureFin;
+      TauxOccS2Moyen += proportionServeur2Occupe;
+    }  
+    
+    HeureDeFinMoyennes = HeureDeFinMoyennes / Params.CombienReplications;
+    CombienSortiesMoyennes /= Params.CombienReplications;
+    CombienDetruitesMoyennes /= Params.CombienReplications;
+    CombienPlusieursTraitementsMoyennes /= Params.CombienReplications;
+    TauxOccS1Moyen /= Params.CombienReplications;
+    TauxOccS2Moyen /= Params.CombienReplications;
+    
+    print('Durée moyenne de traitement en heures : ${HeureDeFinMoyennes/60}');
+    print('Nombre moyen de pièces complétées : $CombienSortiesMoyennes');
+    print('Nomre moyen de pièces détruites : $CombienDetruitesMoyennes');
+    print('Nombre moyen de pièces retravaillée : $CombienPlusieursTraitementsMoyennes');
+    print("Taux d'occupation moyen du serveur No 1 : $TauxOccS1Moyen");
+    print("Taux d'occupation moyen du serveur No 2 : $TauxOccS2Moyen");
     
 }
 
