@@ -18,7 +18,7 @@ class serveur {
  }
 
 class Evenement {
-  double Temps;                                                                                                     //différent du code (a valider)
+  double Temps;                                                                                                    
   String Libelle_Evenement ;
   int ServeurNo ;
   piece PieceTransport ;
@@ -140,7 +140,7 @@ main() {
      //il faut finalement déclarer une variable de type booléen qui permet de déclencher 
      //la sortie de la boucle ABC lorsque la Nième pièce est traitée
           
-      bool Termine; 
+      bool Termine = false; 
           
 
         ///////////////////////////////////////////////////////////////////////////
@@ -157,8 +157,7 @@ main() {
           }
         }
         
-        
-        
+                
        // PHASE A: Avancer l'horloge au prochain événement de la liste (celui ayant le temps d'occurence le plus faible). Commencer par récupérer l'événement.
        
         //Avancer l'horloge au temps de cet événement.
@@ -187,10 +186,11 @@ main() {
           Sys.ListEvenements.add(eve);
           
           
-         //FSP
+         //FSP: L'événement en cours est une fin de service sur une pièce
           
         }else if (EvenementEnCours.Libelle_Evenement == "FSP"){
-                     
+         //'commencer par récupérer la pièce qui a terminé le traitement
+          
           piece pieceEnCours = null;
           if (EvenementEnCours.ServeurNo == 1){
             pieceEnCours = Sys.serveur1.PieceEnTraitement;
@@ -199,9 +199,7 @@ main() {
                pieceEnCours = Sys.serveur2.PieceEnTraitement;
                Sys.serveur2.PieceEnTraitement = null;
              }       
-        ////
-        ////
-        ////A modifier
+     
 //          'Calculer le chemin pris par la pièce:
 //          '72,5% des cas = sortie
 //          '20% des cas = retravail
@@ -209,21 +207,29 @@ main() {
          double prob = GenerateurVariablesAleatoires.nextDouble();
          
           if (Params.ProbSortie >= prob ){
+            //dans ce cas, le chemin est la sortie
+            //marquer l'heure de sortie de la pièce
             pieceEnCours.HeureSortie = Horloge;
             pieceEnCours.FinTraitement = Horloge;
-            
+            //incrémenter le nombre de traitements de la pièce
             pieceEnCours.NbTraitements ++ ;
-            
+            //ajouter la piece à la liste des entités traitées
             Sys.EntitesTraitees.add(pieceEnCours);
             
           }else if ((Params.ProbSortie + Params.ProbDestruction) >= prob){
+            //le chemin choisi est la destruction
+            //Marquer l'heure de sortie de la pièce
             pieceEnCours.HeureSortie = Horloge;
             pieceEnCours.FinTraitement = Horloge;
+            //incrémenter le nombre de traitements de la pièce
             pieceEnCours.NbTraitements ++ ;
+            //ajouter la piece à la liste des entités détruites
             Sys.EntitesDetruites.add(pieceEnCours);
             
-          }else if (Params.ProbDestruction + Params.ProbRetravail + Params.ProbSortie){
+          }else if (Params.ProbDestruction + Params.ProbRetravail + Params.ProbSortie >= prob){
+            //le chemin choisi est le retravail
             pieceEnCours.FinTraitement = Horloge;
+            //créer l'événement retravail pièce à Horloge + temps de transport aléatoire
             pieceEnCours.NbTraitements ++ ;
             
             var eve = new Evenement();
@@ -234,11 +240,12 @@ main() {
             Sys.ListEvenements.add(eve);
           }
         
- 
+          //vérification de la condition de sortie à chaque fois qu'une unité est prête à sortir du serveur
           if ((Sys.EntitesTraitees.length + Sys.EntitesDetruites.length) == Params.CombienEntites){
             Termine = true;
             Sys.HeureDeFin = Horloge;
             }else if (EvenementEnCours.Libelle_Evenement == "RTP"){
+              //L'événement en cours et une fin de transport vers la file pour une pièce à retravailler
               piece pieceEnCours = EvenementEnCours.PieceTransport;
               Sys.file.add(pieceEnCours);
             }
@@ -252,28 +259,29 @@ main() {
          if (Termine != true ) {
            //Quelles sont les conditions qui font en sorte qu'un événement doit se déclencher ?
            //1) Serveur 1 libre et au moins une pièce en file - Déclencher un début de service sur le serveur 1
-           if(Sys.serveur1.PieceEnTraitement == null && Sys.file.length> 0){                                            //A valider
+           if(Sys.serveur1.PieceEnTraitement == null && Sys.file.length> 0){                                            
         
              
-            piece PieceEnCours = Sys.file.first;
-            Sys.file.remove(PieceEnCours);
-            Sys.serveur1.PieceEnTraitement = PieceEnCours;
-            PieceEnCours.DebutTraitement = Horloge;
-            PieceEnCours.ServeurTraitmement = 1;
+            piece PieceEnCours = Sys.file.first;//récupérer la pièce de la file 
+            Sys.file.remove(PieceEnCours);//On enlève la pièce de la file
+            Sys.serveur1.PieceEnTraitement = PieceEnCours; //On affecte la pièce au seveur 1
+            PieceEnCours.DebutTraitement = Horloge;//Marquer l'heure de début de service de l'entité
+            PieceEnCours.ServeurTraitmement = 1;//MArquer le numéro de serveur traitant l'entité
+            
             //Créer l'évènement Fin de Service Pièce "FSP" sur le serveur No 1 
             var eve = new Evenement();
             eve.Libelle_Evenement = "FSP";
             eve.ServeurNo = 1;
-            //Si la pièce a déjà été traitée (NbTraitements > 1) alors il s'agit d'un évnèment retravail
+            //le temps d'exécution de l'événement dépend si c'est une pièce travaillée pour la première fois ou pas
             if (PieceEnCours.NbTraitements > 1){
               var tempsTraitement = generateExponential(Params.TauxRetravail, GenerateurVariablesAleatoires);                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
-              Sys.serveur1.SommeTempsOccupe += tempsTraitement;
+              Sys.serveur1.SommeTempsOccupe = Sys.serveur1.SommeTempsOccupe + tempsTraitement;
             
             }else{
               var tempsTraitement = generateExponential(Params.TauxServeur1PremierPassage, GenerateurVariablesAleatoires);                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
               eve.Temps = Horloge + tempsTraitement;
-              Sys.serveur1.SommeTempsOccupe = Sys.serveur1.SommeTempsOccupe + tempsTraitement;
+              Sys.serveur1.SommeTempsOccupe = Sys.serveur1.SommeTempsOccupe + tempsTraitement; 
                           
             }
             Sys.ListEvenements.add(eve);
@@ -285,33 +293,92 @@ main() {
              Sys.serveur2.PieceEnTraitement = PieceEnCours;
              PieceEnCours.DebutTraitement = Horloge;
              PieceEnCours.ServeurTraitmement = 2;
-             
+             //créer l'événement fin de service
              var eve = new Evenement();
              eve.Libelle_Evenement = "FSP";
              eve.ServeurNo = 2;
-      //le temps d'exécution de l'événement dépend si c'est une pièce travaillée pour la première fois ou pas   
+             //le temps d'exécution de l'événement dépend si c'est une pièce travaillée pour la première fois ou pas   
              if (PieceEnCours.NbTraitements > 1){
-               var tempsTraitement = 15;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+               var tempsTraitement = generateExponential(Params.TauxRetravail, GenerateurVariablesAleatoires);
                eve.Temps = Horloge + tempsTraitement;
                Sys.serveur2.SommeTempsOccupe += tempsTraitement;
                
              }else{
-               var tempsTraitement = 15;                                                           //remplacer par GenerateExponential(Params.TauxRetravail,GenerateurVariablesAleatoires)
+               var tempsTraitement =  generateExponential(Params.TauxServeur2PremierPassage, GenerateurVariablesAleatoires);                                                           
                eve.Temps = Horloge + tempsTraitement;
                Sys.serveur2.SommeTempsOccupe += tempsTraitement;
                
              }
+             //Ajouter l'événement à la liste des événements à traiter
              Sys.ListEvenements.add(eve);
            }
            //FIN PHASE C
          }
-          
-           
-        
-        } while (Termine = true); //fin du DO
-        
-      Params.Resultats.add(Sys);                                                                              //Il faut recommencer la boucle des REP;
+                  
+        } while (!Termine); //fin boucle des réplications
+      
+      //ajouter l'objet sys contenant les listes d'entités traitées à l'objet params qui mémorise les paramètres et les résultats pour l'ensemble des réplications  
+      Params.Resultats.add(Sys);
+      
+      //Calcul des statistiques de simulation (N réplication)
+      
+      //calculer les stats pour chaque réplication selon ce qui est demandé
+      //alors nous bouclons pour chaque réplication
 
+      double HeureDeFinMoyennes = 0.00;
+      double CombienSortiesMoyennes = 0.00;
+      double CombienDetruitesMoyennes = 0.00;
+      double CombienPlusieursTraitementsMoyennes = 0.00;
+      double TauxOccS1Moyen = 0.00;
+      double TauxOccS2Moyen = 0.00;
+
+      for (int i = 1; i< Params.CombienReplications; i++){
+        
+        //Quelle heure est-il à la fin de la 200e unité traitée
+        double heureFin = Params.Resultats.elementAt(i-1).HeureDeFin;
+        HeureDeFinMoyennes += heureFin;
+        //Combien d'entités sont sorties (sans destruction mais retravail inclus) 
+        double CombienSorties = Params.Resultats.elementAt(i-1).EntitesTraitees.length;
+        CombienSortiesMoyennes += CombienSorties;
+        //combien d'entités sont détruites
+        double CombienDetruites = Params.Resultats.elementAt(i-1).EntitesDetruites.length;
+        CombienDetruitesMoyennes += CombienDetruites;
+        //Combien d'entités sont traitées plus d'une fois (retravaillée) parmi les entités traitées et les entités détruites 
+        double CombienPlusieursTraitements=0.00;
+        
+        for (piece p in Params.Resultats.elementAt(i-1).EntitesTraitees){
+          if (p.NbTraitements>1){
+            CombienPlusieursTraitements ++;
+          }
+          
+        }
+        
+        for (piece p in Params.Resultats.elementAt(i-1).EntitesDetruites){
+          if (p.NbTraitements>1){
+            CombienPlusieursTraitements ++;
+          }
+          
+        }
+        
+      // Combien de temps (proportion) le serveur 1 est-il occupé ?
+        double proportionServeur1Occupe = Params.Resultats.elementAt(i-1).serveur1.SommeTempsOccupe / heureFin;
+        TauxOccS1Moyen += proportionServeur1Occupe;
+        
+      //Combien de temps (proportion) le serveur 2 est-il occupé ?
+        double proportionServeur2Occupe = Params.Resultats.elementAt(i-1).serveur2.SommeTempsOccupe / heureFin;
+        TauxOccS2Moyen += proportionServeur2Occupe;
+      }
+            
+          HeureDeFinMoyennes = HeureDeFinMoyennes / Params.CombienReplications;
+          CombienSortiesMoyennes /= Params.CombienReplications;
+          CombienDetruitesMoyennes /= Params.CombienReplications;
+          CombienPlusieursTraitementsMoyennes /= Params.CombienReplications;
+          TauxOccS1Moyen /= Params.CombienReplications;
+          TauxOccS2Moyen /= Params.CombienReplications;
+          
+          print('$HeureDeFinMoyennes');
+      
+      
 
     }
     
