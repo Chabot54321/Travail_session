@@ -1,10 +1,21 @@
+
+
 import "dart:math";
+import 'dart:html';
+
+
+InputElement CombienReplications,CombienEntites,TauxArrivee,TauxServeur1PremierPassage,TauxServeur2PremierPassage,TauxRetravail,
+LB_TransportRetravail,UB_TransportRetravail,ProbSortie,ProbDestruction,ProbRetravail;
+
+ButtonElement bouton_lancer;
+
 
 // DÉFINITION DES CLASSES DE LA SIMULATION
 
 class piece {
   double HeureArrivee;
   double DebutTraitement ;
+  
   double FinTraitement ;
   double HeureSortie;
   int NbTraitements = 0;
@@ -56,31 +67,25 @@ class SimulationDatas {
 
 
 main() {
-  var Params = new SimulationDatas() ;        //Pas sur de la traduction
+  
+  bind_elements();
+  
+  var Params = new SimulationDatas() ;     
     
-  Params.Resultats = new List<system>();    //Pas sur de la traduction
+  Params.Resultats = new List<system>();   
   
     Params.CombienReplications = 50;
-    
-    Params.CombienEntites = 100;
-    
+    //assert(int.parse('42') == 42)
+    Params.CombienEntites = 200;
     Params.TauxArrivee = 4.00;
-    
-    Params.TauxServeur1PremierPassage = 5.00;
-    
-    Params.TauxServeur2PremierPassage = 5.00;
-    
+    Params.TauxServeur1PremierPassage = 2.00;
+    Params.TauxServeur2PremierPassage = 1.00;
     Params.TauxRetravail = 5.00;
-    
     Params.LB_TransportRetravail = 3.00;
-    
     Params.UB_TransportRetravail = 7.00;
-   
     Params.ProbSortie = 0.75;
-    
     Params.ProbDestruction = 0.05;
-    
-    Params.ProbRetravail = 0.2;
+    Params.ProbRetravail = 0.20;
     
     //N LECTURE PARAMÈTRES
     
@@ -335,7 +340,7 @@ main() {
 
     for (int i = 1; i< Params.CombienReplications+1; i++){
       
-      //Quelle heure est-il à la fin de la 200e unité traitée
+      //Quelle heure est-il à la fin de la Nieme unité traitée
       double heureFin = Params.Resultats.elementAt(i-1).HeureDeFin;
       HeureDeFinMoyennes += heureFin;
       //Combien d'entités sont sorties (sans destruction mais retravail inclus) 
@@ -395,4 +400,23 @@ double generateUniform (double LB,double UB, Random generator){
   double valeur; if (LB < UB) { 
     valeur = ((UB - LB) * generator.nextDouble()) + LB;
     } 
-  return valeur; }
+  return valeur; 
+  }
+
+  
+
+
+bind_elements() {
+    
+    var i =1;
+    CombienReplications = querySelector('#CombienReplications');
+    CombienEntites = querySelector('#CombienEntites');
+    TauxArrivee = querySelector('#TauxArrivee');
+    TauxServeur1PremierPassage = querySelector('#TauxServeur1PremierPassage');
+    TauxServeur2PremierPassage = querySelector('#TauxServeur2PremierPassage');
+    TauxRetravail = querySelector('#TauxRetravail');
+    LB_TransportRetravail = querySelector('#LB_TransportRetravail');
+    UB_TransportRetravail = querySelector('#UB_TransportRetravail');
+    ProbSortie = querySelector('#ProbSortie');
+    ProbDestruction = querySelector('#ProbRetravail');
+    } 

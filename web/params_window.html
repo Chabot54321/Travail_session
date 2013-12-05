@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="template.css">
+
+  </head>
+  
+  <body>
+    <div>
+    <h1>Model de simulation :</h1>
+    </div>
+    <p><img src="model.png" alt="model"></p>
+    <table id="table"></table>
+    <label id="label1"></label>
+    <form name="contactform" autocomplete>
+      
+        <div>
+        <h3>Paramêtres de simulation :</h3>
+        <div>
+        <span>Combien de replications :</span><input id="CombienReplications" type="int" name="CombienReplications" class="input1"/>      
+        </div>       
+        <div>
+        <span>Combien d'entités :</span><input id="CombienEntites" type="text" name="CombienEntites" class="input1"/>        
+        </div>   
+        <div>
+        <span>Taux d'arrivee :</span><input id="TauxArrivee" type="text" name="TauxArrivee" class="input1"/>       
+        </div>   
+        <div>
+        <span>Taux Serveur1 premier passage :</span><input id="TauxServeur1PremierPassage" type="text" name="TauxServeur1PremierPassage" class="input1"/>        
+        </div>   
+        <div>
+        <span>Taux Serveur2 premier passage :</span><input id="TauxServeur2PremierPassage" type="text" name="TauxServeur2PremierPassage" class="input1"/>        
+        </div>   
+        <div>
+        <span>Taux de retravail :</span><input id="name" type="text" name="name1" class="input1"/>        
+        </div>   
+        <div>
+        <span>LB_Transport retravail :</span><input id="LB_TransportRetravail" type="text" name="LB_TransportRetravail" class="input1"/>        
+        </div>          
+        <div>
+        <span>UB_Transport retravail :</span><input id="UB_TransportRetravail" type="text" name="UB_TransportRetravail" class="input1"/>       
+         </div>       
+        <div>
+        <span>Prob de sortie :</span><input id="ProbSortie" type="text" name="ProbSortie" class="input1"/>        
+        </div>   
+        <div>
+        <span>Prob de destruction :</span><input id="ProbDestruction" type="text" name="ProbDestruction" class="input1"/>       
+         </div>          
+        <div>
+        <span>Prob de retravail :</span><input id="ProbRetravail" type="text" name="ProbRetravail" class="input1"/>        
+        </div>   
+        
+        <button type="button" id="bouton_save" class="btns">Lancer</button>        
+        </div>
+        <div></div>
+        
+    </form>
+    <script type="application/dart" src="simulation.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
