@@ -4,7 +4,7 @@ import "dart:math";
 import 'dart:html';
 
 
-InputElement CombienReplications,CombienEntites,TauxArrivee,TauxServeur1PremierPassage,TauxServeur2PremierPassage,TauxRetravail,
+InputElement CombienReplications, CombienEntites,TauxArrivee,TauxServeur1PremierPassage,TauxServeur2PremierPassage,TauxRetravail,
 LB_TransportRetravail,UB_TransportRetravail,ProbSortie,ProbDestruction,ProbRetravail;
 
 ButtonElement bouton_lancer;
@@ -74,18 +74,44 @@ main() {
     
   Params.Resultats = new List<system>();   
   
+    
+
+    
+    
+    
     Params.CombienReplications = 50;
-    //assert(int.parse('42') == 42)
+    CombienReplications.value = Params.CombienReplications.toString();
+    
+    
     Params.CombienEntites = 200;
+    CombienEntites.value = Params.CombienEntites.toString();
+    
     Params.TauxArrivee = 4.00;
+    TauxArrivee.value = Params.TauxArrivee.toString();
+    
     Params.TauxServeur1PremierPassage = 2.00;
+    TauxServeur1PremierPassage.value = Params.TauxServeur1PremierPassage.toString();
+    
     Params.TauxServeur2PremierPassage = 1.00;
+    TauxServeur2PremierPassage.value = Params.TauxServeur2PremierPassage.toString();
+    
     Params.TauxRetravail = 5.00;
+    TauxRetravail.value = Params.TauxRetravail.toString();
+    
     Params.LB_TransportRetravail = 3.00;
+    LB_TransportRetravail.value = Params.LB_TransportRetravail.toString();
+    
     Params.UB_TransportRetravail = 7.00;
+    UB_TransportRetravail.value = Params.UB_TransportRetravail.toString();
+    
     Params.ProbSortie = 0.75;
-    Params.ProbDestruction = 0.05;
-    Params.ProbRetravail = 0.20;
+    ProbSortie.value = Params.ProbSortie.toString();
+    
+    Params.ProbDestruction = 0.20;
+    ProbDestruction.value = Params.ProbDestruction.toString();
+    
+    Params.ProbRetravail = 0.05;
+    ProbRetravail.value = Params.ProbRetravail.toString();
     
     //N LECTURE PARAMÈTRES
     
@@ -203,10 +229,7 @@ main() {
                Sys.serveur2.PieceEnTraitement = null;
              }       
      
-//          'Calculer le chemin pris par la pièce:
-//          '72,5% des cas = sortie
-//          '20% des cas = retravail
-//          '7,5% des cas = destruction
+
          double prob = GenerateurVariablesAleatoires.nextDouble();
          
           if (Params.ProbSortie >= prob ){
@@ -371,7 +394,7 @@ main() {
         }
         
       }
-      
+      CombienPlusieursTraitementsMoyennes += CombienPlusieursTraitements;
     // Combien de temps (proportion) le serveur 1 est-il occupé ?
       double proportionServeur1Occupe = Params.Resultats.elementAt(i-1).serveur1.SommeTempsOccupe / heureFin;
       TauxOccS1Moyen += proportionServeur1Occupe;
@@ -424,5 +447,7 @@ bind_elements() {
     LB_TransportRetravail = querySelector('#LB_TransportRetravail');
     UB_TransportRetravail = querySelector('#UB_TransportRetravail');
     ProbSortie = querySelector('#ProbSortie');
-    ProbDestruction = querySelector('#ProbRetravail');
-    } 
+    ProbDestruction = querySelector('#ProbDestruction');
+    ProbRetravail = querySelector('#ProbRetravail');
+    
+} 
