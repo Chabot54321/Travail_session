@@ -44,6 +44,7 @@ h1, p {
 input {
   display: block;
   border: 1px solid #cccccc;
+  width: 40%;
 }
 
 

@@ -1332,3 +1332,13 @@ build.dart --machine --changed=web/simulation.dart
 
 build.dart finished [805 ms]
 
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [869 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [1027 ms]
+
