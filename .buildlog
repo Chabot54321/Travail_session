@@ -1342,3 +1342,58 @@ build.dart --machine --changed=web/template.css
 
 build.dart finished [1027 ms]
 
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [858 ms]
+
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [877 ms]
+
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [815 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [884 ms]
+
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [850 ms]
+
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [920 ms]
+
+---
+build.dart --machine --changed=web/params_window.html --changed=web/simulation.dart
+
+build.dart finished [2553 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [861 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [873 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [847 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [859 ms]
+

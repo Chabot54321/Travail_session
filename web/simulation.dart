@@ -74,11 +74,6 @@ main() {
     
   Params.Resultats = new List<system>();   
   
-    
-
-    
-    
-    
     Params.CombienReplications = 50;
     CombienReplications.value = Params.CombienReplications.toString();
     
@@ -118,7 +113,13 @@ main() {
     
     ////////////////////////////////////////////////////////////////////////////
     
-    //Éléments de simulation
+    //Éléments de simulation//
+    
+    
+    //Bouton lancer 
+    
+    bouton_lancer.onClick.listen((Event e) { 
+    
     
     var GenerateurVariablesAleatoires = new Random();
     var start = DateTime; //Dim start As DateTime = Now
@@ -417,8 +418,13 @@ main() {
     print('Nombre moyen de pièces retravaillées : $CombienPlusieursTraitementsMoyennes');
     print("Taux d'occupation moyen du serveur No 1 : $TauxOccS1Moyen");
     print("Taux d'occupation moyen du serveur No 2 : $TauxOccS2Moyen");
+   
     
+});  
 }
+
+
+
 
 double generateExponential (double taux, Random generator) { 
   double valeur = (-1/taux) * log(generator.nextDouble()) * 60; 
@@ -438,6 +444,7 @@ double generateUniform (double LB,double UB, Random generator){
 bind_elements() {
     
     var i =1;
+    
     CombienReplications = querySelector('#CombienReplications');
     CombienEntites = querySelector('#CombienEntites');
     TauxArrivee = querySelector('#TauxArrivee');
@@ -449,5 +456,6 @@ bind_elements() {
     ProbSortie = querySelector('#ProbSortie');
     ProbDestruction = querySelector('#ProbDestruction');
     ProbRetravail = querySelector('#ProbRetravail');
+    bouton_lancer = querySelector('#bouton_lancer');
     
 } 
