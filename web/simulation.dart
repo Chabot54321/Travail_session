@@ -123,6 +123,7 @@ main() {
     bouton_lancer.onClick.listen((Event e) { 
     
       
+      
       Params.CombienReplications = int.parse(CombienReplications.value);
       Params.CombienEntites = int.parse(CombienEntites.value);
       Params.TauxArrivee =  double.parse(TauxArrivee.value) ;
@@ -136,11 +137,11 @@ main() {
       Params.ProbRetravail = double.parse(ProbRetravail.value);
 
 
-    var GenerateurVariablesAleatoires = new Random();
-    var start = DateTime; //Dim start As DateTime = Now
+      var GenerateurVariablesAleatoires = new Random();
+      var start = DateTime; //Dim start As DateTime = Now
     
     
-    for (var REP = 1; REP < Params.CombienReplications+1; REP++) {     
+      for (var REP = 1; REP < Params.CombienReplications+1; REP++) {     
       // La simulation se trouve dans cette boucle
       
       //À chaque réplication, il faut instancier un nouveau système (dans son état initial) avec des files vides et 2 serveurs neufs
@@ -294,7 +295,6 @@ main() {
           
         }
        //   FIN PHASE B
-
           
        // PHASE C
 
@@ -434,13 +434,8 @@ main() {
     input5.value = "Taux d'occupation moyen du serveur No 1 : " + (TauxOccS1Moyen).toString();
     input6.value = "Taux d'occupation moyen du serveur No 2 " + (TauxOccS2Moyen).toString();    
     
-
-
-   
-    
 });  
 }
-
 
 
 
@@ -455,8 +450,6 @@ double generateUniform (double LB,double UB, Random generator){
     } 
   return valeur; 
   }
-
-  
 
 
 bind_elements() {
@@ -476,15 +469,13 @@ bind_elements() {
     ProbRetravail = querySelector('#ProbRetravail');
     bouton_lancer = querySelector('#bouton_lancer');
     
-    
-
+  
     input1 = querySelector('#input1');
     input2 = querySelector('#input2');
     input3 = querySelector('#input3');
     input4 = querySelector('#input4');
     input5 = querySelector('#input5');
     input6 = querySelector('#input6');
-    
     
     
 } 

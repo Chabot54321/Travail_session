@@ -2019,3 +2019,333 @@ build.dart --machine --changed=web/simulation.dart
 
 build.dart finished [889 ms]
 
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [2013 ms]
+
+---
+build.dart --machine --changed=web/params_window.html --changed=web/simulation.dart
+
+build.dart finished [969 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [909 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [877 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [853 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [873 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [885 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [855 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [913 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [908 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [850 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [893 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [870 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [893 ms]
+
+---
+build.dart --machine --changed=web/params_window.html --changed=web/template.css
+
+build.dart finished [835 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [868 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [882 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [938 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [854 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [874 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [854 ms]
+
+---
+build.dart --machine --changed=web/params_window.html --changed=web/template.css
+
+build.dart finished [867 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [862 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [931 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [924 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [892 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [965 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [878 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [948 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [913 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [872 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [889 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [853 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [906 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [884 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [898 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [944 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [907 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [894 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [929 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [909 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [904 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [895 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [902 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [900 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [895 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [899 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [845 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [910 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [870 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [869 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [904 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [910 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [875 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [854 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [883 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [864 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [879 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [847 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [931 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [909 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [892 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [916 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [884 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [894 ms]
+
+---
+build.dart --machine --changed=web/template.css
+
+build.dart finished [908 ms]
+
