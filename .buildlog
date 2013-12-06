@@ -1202,3 +1202,8 @@ build.dart --machine --changed=web/params_window.html --changed=web/simulation.d
 
 build.dart finished [937 ms]
 
+---
+build.dart --machine --changed=web/simulation.dart
+
+build.dart finished [1047 ms]
+
