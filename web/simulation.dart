@@ -5,7 +5,9 @@ import 'dart:html';
 
 
 InputElement CombienReplications, CombienEntites,TauxArrivee,TauxServeur1PremierPassage,TauxServeur2PremierPassage,TauxRetravail,
-LB_TransportRetravail,UB_TransportRetravail,ProbSortie,ProbDestruction,ProbRetravail;
+LB_TransportRetravail,UB_TransportRetravail,ProbSortie,ProbDestruction,ProbRetravail,input1,input2,input3,input4,input5,input6;
+
+//LabelElement label1,label2,label3,label4,label5,label6 ;
 
 ButtonElement bouton_lancer;
 
@@ -120,7 +122,20 @@ main() {
     
     bouton_lancer.onClick.listen((Event e) { 
     
-    
+      
+      Params.CombienReplications = int.parse(CombienReplications.value);
+      Params.CombienEntites = int.parse(CombienEntites.value);
+      Params.TauxArrivee =  double.parse(TauxArrivee.value) ;
+      Params.TauxServeur1PremierPassage = double.parse(TauxServeur1PremierPassage.value);
+      Params.TauxServeur2PremierPassage = double.parse(TauxServeur2PremierPassage.value);
+      Params.TauxRetravail = double.parse(TauxRetravail.value);
+      Params.LB_TransportRetravail = double.parse(LB_TransportRetravail.value);      
+      Params.UB_TransportRetravail = double.parse(UB_TransportRetravail.value);
+      Params.ProbSortie = double.parse(ProbSortie.value);
+      Params.ProbDestruction = double.parse(ProbDestruction.value);
+      Params.ProbRetravail = double.parse(ProbRetravail.value);
+
+
     var GenerateurVariablesAleatoires = new Random();
     var start = DateTime; //Dim start As DateTime = Now
     
@@ -412,12 +427,15 @@ main() {
     TauxOccS1Moyen /= Params.CombienReplications;
     TauxOccS2Moyen /= Params.CombienReplications;
     
-    print('Durée moyenne de traitement en heures : ${HeureDeFinMoyennes/60}');
-    print('Nombre moyen de pièces complétées : $CombienSortiesMoyennes');
-    print('Nomre moyen de pièces détruites : $CombienDetruitesMoyennes');
-    print('Nombre moyen de pièces retravaillées : $CombienPlusieursTraitementsMoyennes');
-    print("Taux d'occupation moyen du serveur No 1 : $TauxOccS1Moyen");
-    print("Taux d'occupation moyen du serveur No 2 : $TauxOccS2Moyen");
+    input1.value = 'Durée moyenne de traitement en heures : '+(HeureDeFinMoyennes/60).toString();
+    input2.value = 'Nombre moyen de pièces complétées : ' + (CombienSortiesMoyennes).toString();
+    input3.value = 'Nombre moyen de pièces détruites : ' + (CombienDetruitesMoyennes).toString();
+    input4.value = 'Nombre moyen de pièces retravaillées : '+(CombienPlusieursTraitementsMoyennes).toString();
+    input5.value = "Taux d'occupation moyen du serveur No 1 : " + (TauxOccS1Moyen).toString();
+    input6.value = "Taux d'occupation moyen du serveur No 2 " + (TauxOccS2Moyen).toString();    
+    
+
+
    
     
 });  
@@ -457,5 +475,16 @@ bind_elements() {
     ProbDestruction = querySelector('#ProbDestruction');
     ProbRetravail = querySelector('#ProbRetravail');
     bouton_lancer = querySelector('#bouton_lancer');
+    
+    
+
+    input1 = querySelector('#input1');
+    input2 = querySelector('#input2');
+    input3 = querySelector('#input3');
+    input4 = querySelector('#input4');
+    input5 = querySelector('#input5');
+    input6 = querySelector('#input6');
+    
+    
     
 } 
