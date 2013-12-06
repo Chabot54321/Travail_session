@@ -385,7 +385,7 @@ main() {
     print('Durée moyenne de traitement en heures : ${HeureDeFinMoyennes/60}');
     print('Nombre moyen de pièces complétées : $CombienSortiesMoyennes');
     print('Nomre moyen de pièces détruites : $CombienDetruitesMoyennes');
-    print('Nombre moyen de pièces retravaillée : $CombienPlusieursTraitementsMoyennes');
+    print('Nombre moyen de pièces retravaillées : $CombienPlusieursTraitementsMoyennes');
     print("Taux d'occupation moyen du serveur No 1 : $TauxOccS1Moyen");
     print("Taux d'occupation moyen du serveur No 2 : $TauxOccS2Moyen");
     

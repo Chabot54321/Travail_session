@@ -12,10 +12,11 @@
     <h1>Model de simulation :</h1>
     </div>
     <p><img src="model.png" alt="model"></p>
+
     <table id="table"></table>
     <label id="label1"></label>
-    <form name="contactform" autocomplete>
-      
+    
+    <form>
         <div>
         <h3>Paramêtres de simulation :</h3>
         <div>
@@ -41,22 +42,22 @@
         </div>          
         <div>
         <span>UB_Transport retravail :</span><input id="UB_TransportRetravail" type="text" name="UB_TransportRetravail" class="input1"/>       
-         </div>       
+        </div>       
         <div>
         <span>Prob de sortie :</span><input id="ProbSortie" type="text" name="ProbSortie" class="input1"/>        
         </div>   
         <div>
         <span>Prob de destruction :</span><input id="ProbDestruction" type="text" name="ProbDestruction" class="input1"/>       
-         </div>          
+        </div>          
         <div>
         <span>Prob de retravail :</span><input id="ProbRetravail" type="text" name="ProbRetravail" class="input1"/>        
         </div>   
-        
+        <div>
+        </div>
         <button type="button" id="bouton_save" class="btns">Lancer</button>        
         </div>
-        <div></div>
-        
     </form>
+    
     <script type="application/dart" src="simulation.dart"></script>
     <script src="packages/browser/dart.js"></script>
   </body>

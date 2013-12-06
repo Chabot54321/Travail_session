@@ -1139,3 +1139,66 @@ build.dart --machine --changed=web/simulation.dart
 
 build.dart finished [1119 ms]
 
+---
+build.dart --machine --changed=web/params_window.html
+[{"method":"warning","params":{"file":"web/params_window.html","message":"Unexpected table cell start tag (td) in the table body phase.","line":19,"charStart":357,"charEnd":361}}]
+build.dart finished [1097 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+[{"method":"warning","params":{"file":"web/params_window.html","message":"Unexpected end tag (td). Ignored.","line":61,"charStart":2399,"charEnd":2404}}]
+[{"method":"warning","params":{"file":"web/params_window.html","message":"Unexpected start tag td. Ignored.","line":62,"charStart":2413,"charEnd":2417}}]
+[{"method":"warning","params":{"file":"web/params_window.html","message":"Unexpected end tag (td). Ignored.","line":64,"charStart":2443,"charEnd":2448}}]
+[{"method":"warning","params":{"file":"web/params_window.html","message":"Unexpected end tag (table). Ignored.","line":65,"charStart":2457,"charEnd":2465}}]
+build.dart finished [898 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [862 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [867 ms]
+
+---
+build.dart --machine --removed=web/params_window.dart
+
+build.dart finished [865 ms]
+
+---
+build.dart --machine --changed=web/resuslts_window.dart
+
+build.dart finished [947 ms]
+
+---
+build.dart --machine --changed=web/resuslts_window.dart
+
+build.dart finished [847 ms]
+
+---
+build.dart --machine --removed=web/resuslts_window.dart
+
+build.dart finished [854 ms]
+
+---
+build.dart --machine --changed=web/resultats_window.dart
+
+build.dart finished [911 ms]
+
+---
+build.dart --machine --removed=web/resultats_window.dart
+
+build.dart finished [872 ms]
+
+---
+build.dart --machine --changed=web/params_window.html
+
+build.dart finished [1097 ms]
+
+---
+build.dart --machine --changed=web/params_window.html --changed=web/simulation.dart
+
+build.dart finished [937 ms]
+
