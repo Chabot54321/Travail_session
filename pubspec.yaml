@@ -1,7 +1,4 @@
-name: Simulation_app
-description: A sample Polymer application
+name: ProjetGroupeV1
+description: A sample web application
 dependencies:
-    polymer: any
-transformers:
-- polymer:
-    entry_points: web/simulation_app.html
+  browser: any
