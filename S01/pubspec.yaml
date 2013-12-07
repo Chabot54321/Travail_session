@@ -1,0 +1,7 @@
+name: Simulation_app
+description: A sample Polymer application
+dependencies:
+    polymer: any
+transformers:
+- polymer:
+    entry_points: web/simulation_app.html
